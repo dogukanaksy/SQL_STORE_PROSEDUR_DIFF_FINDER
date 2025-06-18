@@ -1,0 +1,36 @@
+﻿## Visual Studio
+.vs/
+*.user
+*.suo
+
+## Build results
+[Bb]in/
+[Oo]bj/
+
+## NuGet
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+
+## Others
+*.log
+*.DS_Store
+*.class
+*.pdb
+*.cache
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Rider
+.idea/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
