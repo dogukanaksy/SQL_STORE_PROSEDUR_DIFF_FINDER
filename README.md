@@ -1,5 +1,8 @@
 #SQL_STORE_PROSEDUR_DIFF_FINDER
 
+![image](https://github.com/user-attachments/assets/07313eba-5c5e-4a31-a445-56b740216b38)
+
+
 program başlangıcında yazılan sp adını serverAddresses.txt dosyasında bulunan ip adresiyle database'e bağlanıp ilgili dbde yazılan PROSEDÜRÜN İÇERİĞİNE BAKAR.
 
 sp_check.sql deki sp ile bağlanılan yerdeki sp içeriği aynı mı değil mi kontrolü sağlanır.
