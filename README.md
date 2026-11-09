@@ -1,30 +1,28 @@
-#SQL_STORE_PROSEDUR_DIFF_FINDER
+# SQL_STORE_PROSEDUR_DIFF_FINDER
 
-![image](https://github.com/user-attachments/assets/07313eba-5c5e-4a31-a445-56b740216b38)
+Çok sayıda SQL Server'da (örneğin her mağazanın kendi veritabanında) aynı **stored procedure**'ün güncel olup olmadığını kontrol eden, farklı olanları listeleyip isteğe bağlı olarak **toplu güncelleyen** bir .NET konsol aracı.
 
+![Ekran görüntüsü](https://github.com/user-attachments/assets/07313eba-5c5e-4a31-a445-56b740216b38)
 
-program başlangıcında yazılan sp adını serverAddresses.txt dosyasında bulunan ip adresiyle database'e bağlanıp ilgili dbde yazılan PROSEDÜRÜN İÇERİĞİNE BAKAR.
+## Nasıl çalışır
 
-sp_check.sql deki sp ile bağlanılan yerdeki sp içeriği aynı mı değil mi kontrolü sağlanır.
+1. Program başında kontrol edilecek SP adı girilir.
+2. `serverAddresses.txt` içindeki her sunucuya bağlanır ve SP'nin içeriğini okur.
+3. İçeriği `sp_check.sql` ile karşılaştırır. Aynıysa bir sonraki sunucuya geçer.
+4. Fark bulunan sunucuları konsolda gösterir ve masaüstüne bir `.txt` dosyası olarak kaydeder.
+5. Kullanıcı onaylarsa `sp_update.sql` scriptini yalnızca fark bulunan sunucularda sırayla çalıştırır.
 
-Aynı ise işlem yapmadan bir sonraki ip adresine geçer.
+## Dosyalar
 
-liste tamamlandıktan sonra fark bulunan ip adresleri masaüstünde bir txt dosyasına yazılır.
+| Dosya | İçerik |
+|---|---|
+| `serverAddresses.txt` | Kontrol edilecek sunucu adresleri (satır başına bir adres) |
+| `databases.json` | Veritabanı adı ve bağlantı bilgileri |
+| `sp_check.sql` | Karşılaştırılacak SP'nin **CREATE** hali |
+| `sp_update.sql` | Fark olan yerlerde çalıştırılacak **ALTER** hali |
 
-Ayrıca consoleda kullanıcıya fark olan ip adresleri bunlar
+## Teknolojiler
 
-sp_update.sql scriptini fark olan yerlerde çalıştırmak isteyip istemediğini sorar.
+C# · .NET 8 Console · System.Data.SqlClient · T-SQL · Newtonsoft.Json
 
-Kullanıcı hayır derse işlem yapılmadan program kapatılır.
-
-Kullanıcı evet derse sırayla tüm fark olan dblere bağlanıp sp_update.sql scriptini çalıştırır.
-
-Böylece spler belirlenen şekilde güncellenmiş olur.
-
-
-NOT : sp_check.sql içeriğine karşılaştıracağınız sp'yi CREATE olarak yazmalısınız.
-
-sp_update.sql txtsine de ALTER halini yani update edeceğiniz şekilde yazmalısınız.
-
-databases.json dosyasına database bağlantı bilgileri girilmelidir.
-
+> ⚠️ Gerçek sunucu adreslerini ve veritabanı şifrelerini repoya eklemeyin. Örnek değerlerle çalışın.
